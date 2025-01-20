@@ -1,5 +1,4 @@
 import { View, Text, ScrollView, StyleSheet } from 'react-native'
-import { Feather } from '@expo/vector-icons'
 
 import Header from '../../components/header'
 import CircleButton from '../../components/CircleButton'
