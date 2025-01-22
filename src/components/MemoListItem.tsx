@@ -1,16 +1,25 @@
-import { View, Text, StyleSheet} from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity} from 'react-native'
+import { Link } from 'expo-router'
+import Icon from './icon'
 
-const MemoListItem = (): JSX.Element => {
+interface Props {
+  onPress?: () => void
+}
+
+const MemoListItem = (props: Props): JSX.Element => {
+    const { onPress } = props
     return (
-      <View style={styles.memoListItem}>
-        <View>
-          <Text style={styles.memoListItemTitle}>買い物リスト</Text>
-          <Text style={styles.memoListItemDate}>2025年1月18日</Text>
-        </View>
-        <View>
-          <Text>X</Text>
-        </View>
-      </View>
+      <Link href='/memo/detail' asChild>
+        <TouchableOpacity style={styles.memoListItem}>
+          <View>
+            <Text style={styles.memoListItemTitle}>買い物リスト</Text>
+            <Text style={styles.memoListItemDate}>2025年1月18日</Text>
+          </View>
+          <TouchableOpacity onPress={onPress}>
+            <Icon name='delete' size={20} color='#B0B0B0' />
+          </TouchableOpacity>
+        </TouchableOpacity>
+      </Link>
     )
 }
 
