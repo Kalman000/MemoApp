@@ -1,13 +1,23 @@
-import { Text, TouchableOpacity, StyleSheet } from 'react-native'
-import { Link } from 'expo-router'
+import { Text, TouchableOpacity, StyleSheet, Alert } from 'react-native'
+import { router } from 'expo-router'
+import { signOut } from 'firebase/auth'
+import { auth } from '../config'
+
+const handlePress = (): void => {
+    signOut( auth )
+        .then(() => {
+            router.replace('/auth/log_in')
+        })
+        .catch(() => {
+            Alert.alert('ログアウトに失敗しました')
+        })
+}
 
 const LogOutButton = (): JSX.Element => {
     return (
-        <Link href='/auth/log_in' asChild>
-            <TouchableOpacity>
-                <Text style={styles.text}>ログアウト</Text>
-          </TouchableOpacity>
-        </Link>
+        <TouchableOpacity onPress={handlePress}>
+            <Text style={styles.text}>ログアウト</Text>
+        </TouchableOpacity>
     )
 }
 
